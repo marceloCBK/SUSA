@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+
+.form-group {
+    float: left;
+    width: 100%;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.datepicker {
+    margin: 0px !important;
+}
+
+.Data {
+    float: left;
+    width: 49%;
+    margin-right: 2%;
+}
+
+.Data:last-child {
+    margin: 0px;
+}
+
+table tbody tr:hover td{
+    background: rgba(164, 157, 255, 0.2) !important;
+}
+table tbody tr td{
+    -webkit-transition: 0.2s;-moz-transition: 0.2s;-ms-transition: 0.2s;-o-transition: 0.2s;transition: 0.2s;
+}
+
+.Marcar td {
+    -webkit-animation: marca 0.5s linear 0s 4 alternate;
+    animation: marca 0.5s linear 0s 4 alternate
+}
+
+@-webkit-keyframes marca {
+    from {background: inherit;}
+    to {background: rgba(164, 157, 255, 0.4) ;}
+}
+
+@keyframes marca {
+    from {background: inherit;}
+    to {background: rgba(164, 157, 255, 0.4) ;}
+}
+
+.Center {
+	/* Internet Explorer 10 */
+	display:-ms-flexbox;
+	-ms-flex-pack:center;
+	-ms-flex-align:center;
+	
+	/* Firefox */
+	display:-moz-box;
+	-moz-box-pack:center;
+	-moz-box-align:center;
+	
+	/* Safari, Chrome, and Opera */
+	display:-webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+	display: -webkit-flex;
+	
+	/* W3C */
+	display:box;
+	box-pack:center;
+	box-align:center;
+	align-items: center;
+    justify-content: center;
+	display: flex;
+}
