@@ -10,11 +10,11 @@
     <div class="col-lg-12">
         <h1 class="page-header"><% $title %></h1>
     </div>
-    <!-- /.col-lg-12 -->
 </div>
-<div class="row">
 
+<div class="row">
     <?php
+    //Mostra mensagem se houver alguma -->
     $resp = json_decode(Session::get('resp'));
     //print_r($resp);
     if ($resp){
@@ -26,8 +26,10 @@
     </div>
         ';
     }
+    //Mostra mensagem se houver alguma <--
     ?>
 </div>
+
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-body">

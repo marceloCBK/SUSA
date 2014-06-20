@@ -35,9 +35,16 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-    if (Auth::guest())
+    if (Auth::guest()) {
+        $respAuth = json_encode([
+            'response' => false,
+            'menssagem' => ['Você precisa estar logado para ver esta página!'],
+        ]);
         return Redirect::guest('entrar')
-            ->with('flash_error', 'Você precisa estar logado para ver esta página!');
+            ->with(array('respAuth'=>$respAuth));
+       /* return Redirect::guest('entrar')
+            ->with('flash_error', 'Você precisa estar logado para ver esta página!');*/
+    }
 });
 
 /*Route::filter('auth', function()
