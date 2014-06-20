@@ -32,10 +32,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/css/style.css">
+      <file leaf-file-name="SetSubmissoes.blade.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/SetSubmissoes.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="19" selection-start="231" selection-end="231" vertical-scroll-proportion="0.27321428" vertical-offset="170" max-vertical-offset="1598">
+            <state line="47" column="56" selection-start="2075" selection-end="2075" vertical-scroll-proportion="0.6737044" vertical-offset="448" max-vertical-offset="2703">
               <folding />
             </state>
           </provider>
@@ -154,7 +154,6 @@
         <option value="$PROJECT_DIR$/app/views/ListCursos.blade.php" />
         <option value="$PROJECT_DIR$/app/controllers/CursosController.php" />
         <option value="$PROJECT_DIR$/app/controllers/SubmissoesController.php" />
-        <option value="$PROJECT_DIR$/app/views/SetSubmissoes.blade.php" />
         <option value="$PROJECT_DIR$/app/models/Conteudos.php" />
         <option value="$PROJECT_DIR$/app/views/ViewSubmissoes.blade.php" />
         <option value="$PROJECT_DIR$/app/controllers/AuthController.php" />
@@ -163,6 +162,7 @@
         <option value="$PROJECT_DIR$/app/views/Default.blade.php" />
         <option value="$PROJECT_DIR$/app/views/Entrar.blade.php" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/app/views/SetSubmissoes.blade.php" />
       </list>
     </option>
   </component>
@@ -214,7 +214,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -226,7 +226,20 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="SUSA">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -285,7 +298,7 @@
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../VAMO" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistory" value="sty&#10;conte&#10;oute&#10;Def&#10;conteu&#10;cont&#10;auth&#10;sub&#10;lis&#10;fil&#10;filte&#10;entrar&#10;vie&#10;list su&#10;Conte&#10;sub con&#10;sets&#10;rout&#10;style&#10;data&#10;entr&#10;se&#10;eventos&#10;eventosc&#10;subm&#10;setsubm&#10;Auth&#10;lists&#10;view&#10;usua&#10;temp&#10;route&#10;glo&#10;Glo&#10;men&#10;tem&#10;redi&#10;rou&#10;menu&#10;$id&#10;min.map&#10;contro&#10;apic&#10;lara" />
+    <property name="SearchEverywhereHistory" value="sets&#10;sty&#10;conte&#10;oute&#10;Def&#10;conteu&#10;cont&#10;auth&#10;sub&#10;lis&#10;fil&#10;filte&#10;entrar&#10;vie&#10;list su&#10;Conte&#10;sub con&#10;rout&#10;style&#10;data&#10;entr&#10;se&#10;eventos&#10;eventosc&#10;subm&#10;setsubm&#10;Auth&#10;lists&#10;view&#10;usua&#10;temp&#10;route&#10;glo&#10;Glo&#10;men&#10;tem&#10;redi&#10;rou&#10;menu&#10;$id&#10;min.map&#10;contro&#10;apic&#10;lara" />
     <property name="options.lastSelected" value="database.main" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -379,15 +392,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1931" height="1040" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31489843" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31489843" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32844242" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15376401" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20501868" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1895355" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26321408" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26534972" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3203991" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -396,11 +409,11 @@
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33031675" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288889" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -421,9 +434,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2657082" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23109691" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -639,11 +652,6 @@
         <state line="17" column="64" selection-start="428" selection-end="428" vertical-scroll-proportion="0.36756757" vertical-offset="0" max-vertical-offset="555" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/SetSubmissoes.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="2" selection-start="4065" selection-end="4065" vertical-scroll-proportion="0.67896676" vertical-offset="1026" max-vertical-offset="2703" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Cursos.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="31" selection-start="224" selection-end="224" vertical-scroll-proportion="0.33693695" vertical-offset="0" max-vertical-offset="555" />
@@ -708,6 +716,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="19" selection-start="231" selection-end="231" vertical-scroll-proportion="0.26333907" vertical-offset="170" max-vertical-offset="1598">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Entrar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="18" selection-start="755" selection-end="755" vertical-scroll-proportion="-9.346154" vertical-offset="114" max-vertical-offset="1173">
@@ -715,9 +730,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
+    <entry file="file://$PROJECT_DIR$/app/views/SetSubmissoes.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="19" selection-start="231" selection-end="231" vertical-scroll-proportion="0.27321428" vertical-offset="170" max-vertical-offset="1598">
+        <state line="47" column="56" selection-start="2075" selection-end="2075" vertical-scroll-proportion="0.6737044" vertical-offset="448" max-vertical-offset="2703">
           <folding />
         </state>
       </provider>

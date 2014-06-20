@@ -25,32 +25,32 @@ $title = (($id)?'Editar Trabalho "'.$conteudos->titulo_con.'"':'Novo Trabalho');
                     <input type="text" class="form-control"<?php $fieldName = 'titulo_con'; echo ' id="'.$fieldName.'" name="'.$fieldName.'"'.(($id)?' value="'.$conteudos->$fieldName.'"':''); ?> />
                 </div>
                 @if ($cursos[0])
-                <div class="Field List">
+                <div class="form-group">
                     <?php
                     echo Form::label(($fieldName = 'id_cur_con'), ($labelname = 'Cursos').':', array('class'=>'control-label', 'for' => 'inputWarning'));
 
                     foreach ($cursos as $cursosRow) {
                         $List[$cursosRow->id_cur] = $cursosRow->nome_cur;
                     }
-                    echo Form::select($fieldName, $List, $conteudos->$fieldName,['class'=>'Input']).'<i class="fa fa-arrow-down"></i>';
+                    echo Form::select($fieldName, $List, $conteudos->$fieldName,['class'=>'form-control']);
                     unset($List);
                     ?>
                 </div>
                 @endif
                 @if ($eventos[0])
-                <div class="Field List">
+                <div class="form-group">
                     <?php
                     echo Form::label(($fieldName = 'id_evt_con'), ($labelname = 'Eventos').':', array('class'=>'control-label', 'for' => 'inputWarning'));
 
                     foreach ($eventos as $eventosRow) {
                         $List[$eventosRow->id_evt] = $eventosRow->nome_evt;
                     }
-                    echo Form::select($fieldName, $List, $conteudos->$fieldName,['class'=>'Input']).'<i class="fa fa-arrow-down"></i>';
+                    echo Form::select($fieldName, $List, $conteudos->$fieldName,['class'=>'form-control']);
                     unset($List);
                     ?>
                 </div>
                 @endif
-                <div class="form-group MaisUm">
+                <div class="form-group">
                     <label class="control-label" for="inputWarning">Autores</label>
                 <?php
                 $fieldName = 'autores_con[]';
