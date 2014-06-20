@@ -28,11 +28,16 @@ class SubmissoesController extends \BaseController {
 	 */
 	public function create()
 	{
+        $cursos     = Cursos::where('status_cur', 1)->get();
+        $eventos    = Eventos::where('status_evt', 1)->get();
+
         return View::make('SetSubmissoes')
             ->with(Config::get('Globals'))
             ->with(
                 array(
-                    'menu'=>ConteudoController::menu(),
+                    'menu'      =>ConteudoController::menu(),
+                    'cursos'    =>$cursos,
+                    'eventos'   =>$eventos,
                 )
             )
             ;
@@ -50,6 +55,8 @@ class SubmissoesController extends \BaseController {
 
             $conteudos->titulo_con = Input::get('titulo_con');
             $conteudos->descricao_con = Input::get('descricao_con');
+            $conteudos->id_cur_con = Input::get('id_cur_con');
+            $conteudos->id_evt_con = Input::get('id_evt_con');
             $conteudos->first_date_con = date("Y-m-d H:i:s");
             $respConteudos = $conteudos->save();
             $autores_con = Input::get('autores_con');
@@ -150,15 +157,19 @@ class SubmissoesController extends \BaseController {
 	public function edit($id)
 	{
         if ($id>0){
-            $conteudos = Conteudos::find($id);
+            $cursos     = Cursos::where('status_cur', 1)->get();
+            $eventos    = Eventos::where('status_evt', 1)->get();
+            $conteudos  = Conteudos::find($id);
+
             if ($conteudos){
                 return View::make('SetSubmissoes')
                     ->with(Config::get('Globals'))
                     ->with(
                         array(
-                            'menu'=>ConteudoController::menu(),
-                            'conteudos'=>$conteudos,
-                            //'resp'=>$resp,
+                            'menu'      =>ConteudoController::menu(),
+                            'cursos'    =>$cursos,
+                            'eventos'   =>$eventos,
+                            'conteudos' =>$conteudos,
                         )
                     )
                     ;
@@ -179,9 +190,11 @@ class SubmissoesController extends \BaseController {
                 $conteudos = Conteudos::find($id);
                 $conteudos->titulo_con       = $_POST['titulo_con'];
                 $conteudos->descricao_con    = $_POST['descricao_con'];
+                $conteudos->id_cur_con       = $_POST['id_cur_con'];
+                $conteudos->id_evt_con       = $_POST['id_evt_con'];
                 $autores_con = Input::get('autores_con');
 
-                if($autores_con){
+                if($autores_con){ //TODO remover autor(es)
                     foreach ($conteudos->autores as $key => $autoresRow) {
                         $conteudos->autores[$key]->nome_cus = $autores_con[$key];
                         unset($autores_con[$key]);

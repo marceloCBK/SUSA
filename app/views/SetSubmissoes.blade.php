@@ -22,8 +22,34 @@ $title = (($id)?'Editar Trabalho "'.$conteudos->titulo_con.'"':'Novo Trabalho');
             <div class="panel-body">
                 <div class="form-group">
                     <label class="control-label" for="inputSuccess">Titulo</label>
-                    <input type="text" class="form-control"<?php $fieldName = 'titulo_con'; echo ' id="'.$fieldName.'" name="'.$fieldName.'"'.(($id)?' value="'.$conteudos->titulo_con.'"':''); ?> />
+                    <input type="text" class="form-control"<?php $fieldName = 'titulo_con'; echo ' id="'.$fieldName.'" name="'.$fieldName.'"'.(($id)?' value="'.$conteudos->$fieldName.'"':''); ?> />
                 </div>
+                @if ($cursos[0])
+                <div class="Field List">
+                    <?php
+                    echo Form::label(($fieldName = 'id_cur_con'), ($labelname = 'Cursos').':', array('class'=>'control-label', 'for' => 'inputWarning'));
+
+                    foreach ($cursos as $cursosRow) {
+                        $List[$cursosRow->id_cur] = $cursosRow->nome_cur;
+                    }
+                    echo Form::select($fieldName, $List, $conteudos->$fieldName,['class'=>'Input']).'<i class="fa fa-arrow-down"></i>';
+                    unset($List);
+                    ?>
+                </div>
+                @endif
+                @if ($eventos[0])
+                <div class="Field List">
+                    <?php
+                    echo Form::label(($fieldName = 'id_evt_con'), ($labelname = 'Eventos').':', array('class'=>'control-label', 'for' => 'inputWarning'));
+
+                    foreach ($eventos as $eventosRow) {
+                        $List[$eventosRow->id_evt] = $eventosRow->nome_evt;
+                    }
+                    echo Form::select($fieldName, $List, $conteudos->$fieldName,['class'=>'Input']).'<i class="fa fa-arrow-down"></i>';
+                    unset($List);
+                    ?>
+                </div>
+                @endif
                 <div class="form-group MaisUm">
                     <label class="control-label" for="inputWarning">Autores</label>
                 <?php
@@ -51,22 +77,10 @@ $title = (($id)?'Editar Trabalho "'.$conteudos->titulo_con.'"':'Novo Trabalho');
                     <?php $fieldName = 'nome_arq'; echo '<input type="file" data-filename-placement="inside" class="file-inputs" id="'.$fieldName.'" name="'.$fieldName.'">';?>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="inputWarning">Resumo</label>
-                    <?php $fieldName = 'descricao_con'; echo '<textarea class="form-control" id="'.$fieldName.'" name="'.$fieldName.'" rows="5">'.(($id)?''.$conteudos->descricao_con.'':'').'</textarea>';?>
+                    <label class="control-label">Resumo</label>
+                    <?php $fieldName = 'descricao_con'; echo '<textarea class="form-control" id="'.$fieldName.'" name="'.$fieldName.'" rows="5">'.(($id)?''.$conteudos->$fieldName.'':'').'</textarea>';?>
                 </div>
-<!--                <div class="form-group">
-                    <label class="control-label" for="inputWarning">CGU</label>
-                    <input type="text" class="form-control"<?php $fieldName = 'cgu_usr'; echo ' id="'.$fieldName.'" name="'.$fieldName.'"'.(($id)?' value="'.$conteudos->email_usr.'"':'');?>>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="inputError">Senha</label>
-                    <input type="password" class="form-control"<?php $fieldName = 'senha_usr'; echo ' id="'.$fieldName.'" name="'.$fieldName.'"';?>>
-                </div>
-               <div class="form-group">
-                    <label class="control-label" for="inputError">Senha Novamente</label>
-                    <input type="password" class="form-control" id="inputError">
-                </div>
--->                <button type="submit" class="btn btn-outline btn-default">Salvar</button>
+                <button type="submit" class="btn btn-outline btn-default">Salvar</button>
             </div>
         </form>
     </div>
@@ -74,7 +88,7 @@ $title = (($id)?'Editar Trabalho "'.$conteudos->titulo_con.'"':'Novo Trabalho');
 @stop
 
 @section('scripts')
-<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="/js/jquery-validation/dist/jquery.validate.min.js"></script>
 <script type="text/javascript">
     function clonar (){
         $( "#Mais" ).clone().appendTo( ".MaisUm" );

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="MySQL - SUSA" uuid="3173ad5d-54dd-4feb-8c79-2cd46522e693">
+    <database-info product="MySQL" version="5.5.23" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.29 ( Revision: alexander.soklakov@oracle.com-20140120140810-s44574olh90i6i4l )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="ulbradb"/>
+    <table name="arquivos_arq" schema="" catalog="ulbradb" type="TABLE">
+      <column name="id_arq" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nome_arq" sqlType="VARCHAR" length="510" precision="0" nullable="true" jdbcType="12"/>
+      <column name="estensao_arq" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="id_fk_arq" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="id_ars_arq" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="caminho_arq" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="extra1_arq" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id_arq"/>
+    </table>
+    <table name="categorias_cat" schema="" catalog="ulbradb" type="TABLE">
+      <column name="id_cat" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_ars_cat" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="nome_cat" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_cat"/>
+    </table>
+    <table name="conteudos_con" schema="" catalog="ulbradb" type="TABLE">
+      <column name="id_con" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_cat_con" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="id_usr_con" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="titulo_con" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="descricao_con" sqlType="VARCHAR" length="510" precision="0" nullable="true" jdbcType="12"/>
+      <column name="status_con" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="last_date_con" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="first_date_con" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <primary-key name="PRIMARY" columns="id_con"/>
+    </table>
+    <table name="conteudos_usuarios_cus" schema="" catalog="ulbradb" type="TABLE">
+      <column name="id_cus" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_usr_cus" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="id_con_cus" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="nome_cus" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_cus"/>
+    </table>
+    <table name="eventos_evt" schema="" catalog="ulbradb" type="TABLE">
+      <column name="id_evt" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_cat_evt" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="nome_evt" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="descricao_evt" sqlType="VARCHAR" length="510" precision="0" nullable="true" jdbcType="12"/>
+      <column name="data_ini_evt" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="data_fim_evt" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id_evt"/>
+    </table>
+    <table name="susa_areas_ars" schema="" catalog="ulbradb" type="TABLE">
+      <column name="is_ars" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nome_ars" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="is_ars"/>
+    </table>
+    <table name="susa_areas_permisoes_arp" schema="" catalog="ulbradb" type="TABLE">
+      <column name="id_arp" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="id_ars_arp" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="id_per_arp" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="nivel_arp" sqlType="VARCHAR" length="4" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_arp"/>
+    </table>
+    <table name="susa_modulos_grupo_mog" schema="" catalog="ulbradb" type="TABLE">
+      <column name="id_mog" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nome_mog" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="status_mog" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id_mog"/>
+    </table>
+    <table name="susa_modulos_mod" schema="" catalog="ulbradb" type="TABLE">
+      <column name="id_mod" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nome_mod" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="id_fk_mod" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="id_mog_mod" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="id_ars_mod" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="status_mod" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6"/>
+      <column name="status_menu_mod" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6"/>
+      <column name="rota_mod" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="icone_mod" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_mod"/>
+      <index name="id_mod" unique="false" columns="id_mod"/>
+    </table>
+    <table name="susa_perfis_per" schema="" catalog="ulbradb" type="TABLE">
+      <column name="id_per" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="nome_per" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_per"/>
+    </table>
+    <table name="susa_usuarios_usr" schema="" catalog="ulbradb" type="TABLE">
+      <column name="id_usr" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_per_usr" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="nome_usr" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="login_usr" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="email_usr" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="senha_usr" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ra_usr" sqlType="VARCHAR" length="32" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cgu_usr" sqlType="VARCHAR" length="32" precision="0" nullable="true" jdbcType="12"/>
+      <column name="status_usr" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="remember_token" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="last_date_usr" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="first_date_usr" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <primary-key name="PRIMARY" columns="id_usr"/>
+      <index name="email_usr" unique="true" columns="email_usr"/>
+    </table>
+  </data-source>
+</component>

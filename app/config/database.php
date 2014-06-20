@@ -53,7 +53,7 @@ return array(
             'host'      => 'localhost',
             'database'  => 'ulbradb',
             'username'  => 'root',
-            'password'  => '',
+            'password'  => '123',
 
             //CBKWeb
             /*'host'      => 'localhost',

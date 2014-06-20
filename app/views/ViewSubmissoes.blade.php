@@ -34,7 +34,7 @@ if ($conteudos->autores[0]){
             ';
             foreach ($conteudos->autores as $autoresRow) {
                 echo '
-                <div class="text-primary">'.$autoresRow->nome_cus.'</div>
+                <div class="col-lg-12 text-primary">'.$autoresRow->nome_cus.'</div>
                 ';
             }
             echo '
@@ -54,7 +54,7 @@ if ($conteudos->arquivos[0]){
                 $fileName = $arquivosRow->nome_arq;
                 $path = $arquivosRow->caminho_arq.'/';
                 echo '
-                <a class="text-primary" href="'.$path.$fileName.'" title="'.$fileName.'" download>'.$fileName.'</a>
+                <a class="col-lg-12 text-primary" href="'.$path.$fileName.'" title="'.$fileName.'" download>'.$fileName.'</a>
                 ';
             }
             echo '

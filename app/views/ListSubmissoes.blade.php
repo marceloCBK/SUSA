@@ -40,14 +40,17 @@
                     <tr'.(($resp->id==$conteudosRow->id_con)?' class="Marcar"':'').'>
                         <td>'.$conteudosRow->titulo_con.'</td>
                         <td>'.$conteudosRow->descricao_con.'</td>
+                        <td>'.$conteudosRow->curso->nome_cur.'</td>
+                        <td>'.$conteudosRow->evento->nome_evt.'</td>
                         <td>'.date("d/m/Y",strtotime($conteudosRow->first_date_con)).'</td>
                         <td>'.(($conteudosRow->status_con)
                             ?'<div type="button" class="btn btn-success btn-circle"><i class="fa fa-thumbs-up"></i></div>'
                             :'<div type="button" class="btn btn-danger btn-circle"><i class="fa fa-thumbs-down"></i></div>').'</td>
                         <td>
                         <div>
-                            <a type="button" class="btn btn-warning btn-circle alterar" href="'.(($route)?$route.'/'.$conteudosRow->id_con.'/editar':'').'" ><i class="fa fa-edit"></i></a>
-                            <a type="button" class="btn btn-danger btn-circle deletar" href="'.(($route)?$route.'/'.$conteudosRow->id_con:'').'"><i class="fa fa-times"></i></a>
+                            <a type="button" title="Ver '.$conteudosRow->titulo_con.'" class="btn btn-info btn-circle ver" href="'.(($route)?$route.'/'.$conteudosRow->id_con:'').'" ><i class="fa fa-file"></i></a>
+                            <a type="button" title="Editar '.$conteudosRow->titulo_con.'" class="btn btn-warning btn-circle alterar" href="'.(($route)?$route.'/'.$conteudosRow->id_con.'/editar':'').'" ><i class="fa fa-edit"></i></a>
+                            <a type="button" title="Deletar '.$conteudosRow->titulo_con.'" class="btn btn-danger btn-circle deletar" href="'.(($route)?$route.'/'.$conteudosRow->id_con:'').'"><i class="fa fa-times"></i></a>
                         </div>
                         </td>
                     </tr>
@@ -60,8 +63,10 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Titulo</th>
-                            <th class="col-lg-6">Resumo</th>
+                            <th class="col-lg-2">Titulo</th>
+                            <th class="col-lg-4">Resumo</th>
+                            <th class="col-lg-2">Curso</th>
+                            <th class="col-lg-2">Evento</th>
                             <th>Desde</th>
                             <th>Status</th>
                             <th class="col-lg-1">Ações</th>

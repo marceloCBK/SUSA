@@ -14,7 +14,19 @@
         <div id="flash_error"><% Session::get('flash_error') %></div>
         @endif
         <?php
-        print_r(Session::get('user'));
+        $resp = json_decode(Session::get('flash_error'));
+        print_r($resp);
+        if ($resp){
+            $mensagem = implode('<br />', $resp->menssagem);
+            echo '
+            <div class="alert'.(($resp->response)?' alert-success':' alert-danger').' alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                '.$mensagem.'
+            </div>
+            ';
+        }
+
+        //print_r(Session::get('user'));
         echo Auth::user()->email_usr;
         if (Input::old('email_usr')) {
             $value = ' value="'.Input::old('email_usr').'"';

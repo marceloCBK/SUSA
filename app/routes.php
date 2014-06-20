@@ -14,38 +14,9 @@
 Blade::setContentTags('<%', '%>');
 
 
-Route::post('entrar', function () {
-    /*$user = array(
-        'email_usr' => Input::get('email_usr'),
-        'senha_usr' => Input::get('senha_usr')
-        //'email_usr' => 'marcelo@cbkdigital.com.br',
-        //'senha_usr' => '123'
-        //'senha_usr' => sha1(Input::get('senha_usr'))
-        //'senha_usr' => Hash::make(Input::get('senha_usr'))
-    );*/
 
-    $user = Usuarios
-        ::where('email_usr', Input::get('email_usr'))
-        ->where('senha_usr', sha1(Input::get('senha_usr')))
-        ->first();
-
-    if($user->id_usr) {
-        Auth::login($user);
-        return Redirect::to('/inicio')
-            ->with('flash_notice', 'You are successfully logged in.');
-    }
-
-    /*if (Auth::attempt($user)) {
-        return Redirect::to('inicio')
-            ->with('flash_notice', 'You are successfully logged in.');
-    }*/
-
-    // authentication failure! lets go back to the login page
-    return Redirect::to('entrar')
-        ->with('flash_error', 'your username/password combination was incorrect.')
-        //->with('user', $user->email_usr)
-        ->withinput();
-});
+Route::get      ('logout'                       , array('uses' => 'AuthController@logout'));
+Route::post     ('entrar'                       , array('uses' => 'AuthController@login'));
 
 Route::get      ('entrar'                       , array('uses' => 'ConteudoController@entrar'))->before('guest');
 Route::get      ('/'                            , array('uses' => 'ConteudoController@Index'))->before('auth');
@@ -54,10 +25,18 @@ Route::get      ('inicio'                       , array('uses' => 'ConteudoContr
 Route::get      ('eventos'                   , array('uses' => 'EventosController@index'))->before('auth');
 Route::get      ('eventos/inserir'           , array('uses' => 'EventosController@create'))->before('auth');
 Route::post     ('eventos'                   , array('uses' => 'EventosController@store'))->before('auth');
-Route::get      ('eventos/{param}'           , array('uses' => 'EventosController@show'))->before('auth');
+//Route::get      ('eventos/{param}'           , array('uses' => 'EventosController@show'))->before('auth');
 Route::get      ('eventos/{param}/editar'    , array('uses' => 'EventosController@edit'))->before('auth');
 Route::post     ('eventos/{param}'           , array('uses' => 'EventosController@update'))->before('auth');
 Route::delete   ('eventos/{param}'           , array('uses' => 'EventosController@destroy'))->before('auth');
+
+Route::get      ('cursos'                   , array('uses' => 'CursosController@index'))->before('auth');
+Route::get      ('cursos/inserir'           , array('uses' => 'CursosController@create'))->before('auth');
+Route::post     ('cursos'                   , array('uses' => 'CursosController@store'))->before('auth');
+//Route::get      ('cursos/{param}'           , array('uses' => 'CursosController@show'))->before('auth');
+Route::get      ('cursos/{param}/editar'    , array('uses' => 'CursosController@edit'))->before('auth');
+Route::post     ('cursos/{param}'           , array('uses' => 'CursosController@update'))->before('auth');
+Route::delete   ('cursos/{param}'           , array('uses' => 'CursosController@destroy'))->before('auth');
 
 Route::get      ('submissoes'                   , array('uses' => 'SubmissoesController@index'))->before('auth');
 Route::get      ('submissoes/inserir'           , array('uses' => 'SubmissoesController@create'))->before('auth');

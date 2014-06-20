@@ -1,6 +1,16 @@
 @charset "utf-8";
 /* CSS Document */
 
+.Block {
+    float: left;
+    width: 100%;
+}
+
+.BlockHalf {
+    float: left;
+    width: 50%;
+}
+
 .form-group {
     float: left;
     width: 100%;

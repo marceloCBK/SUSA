@@ -37,7 +37,7 @@ Route::filter('auth', function()
 {
     if (Auth::guest())
         return Redirect::guest('entrar')
-            ->with('flash_error', 'You must be logged in to view this page!');
+            ->with('flash_error', 'Você precisa estar logado para ver esta página!');
 });
 
 /*Route::filter('auth', function()
@@ -65,7 +65,7 @@ Route::filter('auth.basic', function()
 Route::filter('guest', function(){
     if (Auth::check())
         return Redirect::to('inicio')
-            ->with('flash_notice', 'You are already logged in!');
+            ->with('flash_notice', 'Você já está logado no sistema!');
 });
 
 /*Route::filter('guest', function()

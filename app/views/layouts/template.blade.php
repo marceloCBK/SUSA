@@ -37,8 +37,8 @@
 <!-- /#wrapper -->
 
 <!-- Core Scripts - Include with every page -->
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//gregpike.net/demos/bootstrap-file-input/bootstrap.file-input.js"></script>
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.file-input.js"></script>
 
 
 <script src="/js/bootstrap.min.js"></script>
