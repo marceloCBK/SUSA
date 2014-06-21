@@ -33,6 +33,25 @@ App::after(function($request, $response)
 |
 */
 
+Route::filter('permit', function()
+{
+    $Auth = AuthController::permit($idUsr);
+    if (!$Auth) {
+        $response   = false;
+        $menssagem  = ['Você não tem <b>permissão</b> para fazer isso!'];
+
+        $resp = json_encode([
+            'response'  => $response,
+            'menssagem' => $menssagem,
+        ]);
+
+        return Redirect::back()
+            ->with([
+                'resp'=>$resp,
+            ]);
+    }
+});
+
 Route::filter('auth', function()
 {
     if (Auth::guest()) {
@@ -42,8 +61,8 @@ Route::filter('auth', function()
         ]);
         return Redirect::guest('entrar')
             ->with(array('respAuth'=>$respAuth));
-       /* return Redirect::guest('entrar')
-            ->with('flash_error', 'Você precisa estar logado para ver esta página!');*/
+        /* return Redirect::guest('entrar')
+             ->with('flash_error', 'Você precisa estar logado para ver esta página!');*/
     }
 });
 

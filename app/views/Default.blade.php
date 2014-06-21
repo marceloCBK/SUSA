@@ -16,6 +16,21 @@
 <div class="row">
     <?php
     //Mostra mensagem se houver alguma -->
+    $resp = json_decode(Session::get('resp'));
+    //print_r($resp);
+    if ($resp){
+        $mensagem = implode('<br />', $resp->menssagem);
+        echo '
+        <div class="alert'.(($resp->response)?' alert-success':' alert-danger').' alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            '.$mensagem.'
+        </div>
+        ';
+    }
+    //Mostra mensagem se houver alguma <--
+
+    /*
+    //Mostra mensagem se houver alguma -->
     $respAuth = json_decode(Session::get('respAuth'));
     //var_dump($respAuth);
     if ($respAuth){
@@ -28,6 +43,7 @@
             ';
     }
     //Mostra mensagem se houver alguma <--
+    */
     ?>
 </div>
 @stop

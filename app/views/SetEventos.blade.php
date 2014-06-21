@@ -16,6 +16,25 @@ $title = (($id)?'Editar Evento "'.$eventos->nome_evt.'"':'Novo Evento');
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
+<div class="row">
+    <?php
+    //Mostra mensagem se houver alguma -->
+    $resp = json_decode(Session::get('resp'));
+    //print_r($resp);
+    if ($resp){
+        $mensagem = implode('<br />', $resp->menssagem);
+        echo '
+        <div class="alert'.(($resp->response)?' alert-success':' alert-danger').' alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            '.$mensagem.'
+        </div>
+        ';
+    }
+    //Mostra mensagem se houver alguma <--
+    ?>
+</div>
+
 <div class="row">
     <div class="col-lg-4">
         <form role="form" class="panel panel-default" enctype="multipart/form-data"<?php echo ' method="post" action="'.$route.(($id)?'/'.$id:'').'"';?>>

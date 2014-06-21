@@ -16,6 +16,25 @@ $title = (($id)?'Editar Trabalho "'.$conteudos->titulo_con.'"':'Novo Trabalho');
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
+<div class="row">
+    <?php
+    //Mostra mensagem se houver alguma -->
+    $resp = json_decode(Session::get('resp'));
+    //print_r($resp);
+    if ($resp){
+        $mensagem = implode('<br />', $resp->menssagem);
+        echo '
+        <div class="alert'.(($resp->response)?' alert-success':' alert-danger').' alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            '.$mensagem.'
+        </div>
+        ';
+    }
+    //Mostra mensagem se houver alguma <--
+    ?>
+</div>
+
 <div class="row">
     <div class="col-lg-4">
         <form role="form" class="panel panel-default" enctype="multipart/form-data"<?php echo ' method="post" action="'.$route.(($id)?'/'.$id:'').'"';?>>
@@ -80,7 +99,19 @@ $title = (($id)?'Editar Trabalho "'.$conteudos->titulo_con.'"':'Novo Trabalho');
                     <label class="control-label">Resumo</label>
                     <?php $fieldName = 'descricao_con'; echo '<textarea class="form-control" id="'.$fieldName.'" name="'.$fieldName.'" rows="5">'.(($id)?''.$conteudos->$fieldName.'':'').'</textarea>';?>
                 </div>
-                <button type="submit" class="btn btn-outline btn-default">Salvar</button>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline btn-default">Salvar</button>
+                    <div class="checkbox Status">
+                        <?php
+                            echo '
+                            <label for="'.($fieldName = 'status_con').'">
+                                '.($labelname = 'Status')
+                                 .Form::checkbox($fieldName, 1, $conteudos->$fieldName,['class' => 'Radio Box']).'
+                            </label>';
+                        ?>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
@@ -102,15 +133,15 @@ $title = (($id)?'Editar Trabalho "'.$conteudos->titulo_con.'"':'Novo Trabalho');
             messages: {
                 titulo_con: {
                     required: "Este campo é necessário!",
-                    minlength: jQuery.format("Por favor, insira pelo menos {0} caracteres!")
+                    minlength: $.validator.format("Por favor, insira pelo menos {0} caracteres!")
                 },
                 autores_con: {
                     required: "Este campo é necessário!",
-                    minlength: jQuery.format("Por favor, insira pelo menos {0} caracteres!")
+                    minlength: $.validator.format("Por favor, insira pelo menos {0} caracteres!")
                 },
                 descricao_con: {
                     required: "Este campo é necessário!",
-                    minlength: jQuery.format("Por favor, insira pelo menos {0} caracteres!")
+                    minlength: $.validator.format("Por favor, insira pelo menos {0} caracteres!")
                 }
             },
             rules: {

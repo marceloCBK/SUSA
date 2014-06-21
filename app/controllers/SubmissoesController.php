@@ -9,7 +9,7 @@ class SubmissoesController extends \BaseController {
 	 */
 	public function index()
 	{
-        $conteudos = Conteudos::orderBy('last_date_con', 'DESC')->orderBy('id_con', 'DESC')->paginate(20);
+        $conteudos = Conteudos::/*orderBy('last_date_con', 'DESC')->*/orderBy('id_con', 'DESC')->paginate(20);
         return View::make('ListSubmissoes')
             ->with(Config::get('Globals'))
             ->with(
@@ -55,6 +55,7 @@ class SubmissoesController extends \BaseController {
 
             $conteudos->titulo_con = Input::get('titulo_con');
             $conteudos->descricao_con = Input::get('descricao_con');
+            $conteudos->status_con = Input::get('status_con');
             $conteudos->id_cur_con = Input::get('id_cur_con');
             $conteudos->id_evt_con = Input::get('id_evt_con');
             $conteudos->first_date_con = date("Y-m-d H:i:s");
@@ -190,6 +191,7 @@ class SubmissoesController extends \BaseController {
                 $conteudos = Conteudos::find($id);
                 $conteudos->titulo_con       = $_POST['titulo_con'];
                 $conteudos->descricao_con    = $_POST['descricao_con'];
+                $conteudos->status_con       = $_POST['status_con'];
                 $conteudos->id_cur_con       = $_POST['id_cur_con'];
                 $conteudos->id_evt_con       = $_POST['id_evt_con'];
                 $autores_con = Input::get('autores_con');
@@ -263,6 +265,27 @@ class SubmissoesController extends \BaseController {
         } else App::abort(404);
 	}
 
+
+    public function updateStatus($id)
+    {
+        if($id>0) {
+            $conteudos = Conteudos::find($id);
+            if ($conteudos->status_con) {
+                $conteudos->status_con = NULL;
+            }else {
+                $conteudos->status_con = 1;
+            }
+            $resp = $conteudos->save();
+
+            //Recarrega pagina via jQuery na view
+            return json_encode(array(
+                'id'=>$id,
+                'resp'=>$resp,
+                'menssagem'=>$menssagem,
+            ));
+        }
+    }
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -278,10 +301,12 @@ class SubmissoesController extends \BaseController {
             $autores = ConteudosUsers::where('id_con_cus', $id);
             $respAutores = $autores->delete();
 
-            //Recarrega pagina via jQuery na view
+
+            //Recarrega pagina via jQuery na view{}
             return json_encode(array(
                 'id'=>$id,
                 'resp'=>$resp,
+                'menssagem'=>$menssagem,
                 'respAutores'=>$respAutores
             ));
         }

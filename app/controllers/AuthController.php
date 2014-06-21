@@ -2,6 +2,12 @@
 
 class AuthController extends \BaseController {
 
+	public function permit($idUsr)
+	{
+        $route = Route::getCurrentRoute()->getPath();
+        return true;
+	}
+
 	public function logout()
 	{
         Auth::logout();

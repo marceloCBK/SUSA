@@ -20,10 +20,10 @@
     if ($resp){
         $mensagem = implode('<br />', $resp->menssagem);
         echo '
-    <div class="alert'.(($resp->response)?' alert-success':' alert-danger').' alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        '.$mensagem.'
-    </div>
+        <div class="alert'.(($resp->response)?' alert-success':' alert-danger').' alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            '.$mensagem.'
+        </div>
         ';
     }
     //Mostra mensagem se houver alguma <--
@@ -38,6 +38,7 @@
             //TODO Mostrar autor(es) do trabalho submetido
             if ($conteudos[0]) {
                 foreach ($conteudos as $conteudosRow) { //DADOS
+                    $statusTipo = (($conteudosRow->status_con)  ?['Destivar  ','success','up'] :['Ativar ','danger','down']);
                     $conteudosPrint .= '
                     <tr'.(($resp->id==$conteudosRow->id_con)?' class="Marcar"':'').'>
                         <td>'.$conteudosRow->titulo_con.'</td>
@@ -45,9 +46,7 @@
                         <td>'.$conteudosRow->curso->nome_cur.'</td>
                         <td>'.$conteudosRow->evento->nome_evt.'</td>
                         <td>'.date("d/m/Y",strtotime($conteudosRow->first_date_con)).'</td>
-                        <td>'.(($conteudosRow->status_con)
-                            ?'<div type="button" class="btn btn-success btn-circle"><i class="fa fa-thumbs-up"></i></div>'
-                            :'<div type="button" class="btn btn-danger btn-circle"><i class="fa fa-thumbs-down"></i></div>').'</td>
+                        <td><a title="'.$statusTipo[0].$conteudosRow->titulo_con.'" class="btn btn-'.$statusTipo[1].' btn-circle StatusChange" href="'.(($route)?$route.'/'.$conteudosRow->id_con:'').'"><i class="fa fa-thumbs-'.$statusTipo[2].'"></i></a>'.'</td>
                         <td>
                         <div>
                             <a type="button" title="Ver '.$conteudosRow->titulo_con.'" class="btn btn-info btn-circle ver" href="'.(($route)?$route.'/'.$conteudosRow->id_con:'').'" ><i class="fa fa-file"></i></a>
@@ -126,6 +125,24 @@ $(function() {
                 if (reponse.resp || reponse.respAutores) {
                     location.reload();
                 }
+            }
+        });
+        return false;
+    });
+
+    $(".StatusChange").click(function() {
+        var url = $(this).attr("href");
+        $.ajax({
+            url: url,
+            type: "PATCH",
+            success: function(result) {
+                //console.log(result);
+                reponse = $.parseJSON(result);
+
+                if (reponse.resp || reponse.respAutores) {
+                    location.reload();
+                }
+
             }
         });
         return false;

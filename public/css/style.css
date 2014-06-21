@@ -15,9 +15,14 @@
     float: left;
     width: 100%;
 }
+
 .checkbox {
     float: left;
     margin-top: 0px;
+}
+
+.checkbox.Status {
+    float: right;
 }
 
 .input-group {
