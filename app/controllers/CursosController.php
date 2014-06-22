@@ -164,6 +164,26 @@ class CursosController extends \BaseController {
         }
     }
 
+    public function updateStatus($id)
+    {
+        if($id>0) {
+            $cursos = Cursos::find($id);
+            if ($cursos->status_cur) {
+                $cursos->status_cur = NULL;
+            }else {
+                $cursos->status_cur = 1;
+            }
+            $resp = $cursos->save();
+
+            //Recarrega pagina via jQuery na view
+            return json_encode(array(
+                'id'=>$id,
+                'resp'=>$resp,
+                'menssagem'=>$menssagem,
+            ));
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *

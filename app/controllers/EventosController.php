@@ -168,6 +168,26 @@ class EventosController extends \BaseController {
         }
 	}
 
+    public function updateStatus($id)
+    {
+        if($id>0) {
+            $eventos = Eventos::find($id);
+            if ($eventos->status_evt) {
+                $eventos->status_evt = NULL;
+            }else {
+                $eventos->status_evt = 1;
+            }
+            $resp = $eventos->save();
+
+            //Recarrega pagina via jQuery na view
+            return json_encode(array(
+                'id'=>$id,
+                'resp'=>$resp,
+                'menssagem'=>$menssagem,
+            ));
+        }
+    }
+
 	/**
 	 * Remove the specified resource from storage.
 	 *

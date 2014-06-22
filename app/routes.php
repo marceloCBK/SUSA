@@ -30,6 +30,7 @@ Route::group(['before' => 'auth|permit'],function(){
     //Route::get      ('eventos/{param}'           , array('uses' => 'EventosController@show'));
     Route::get      ('eventos/{param}/editar'    , array('uses' => 'EventosController@edit'));
     Route::post     ('eventos/{param}'           , array('uses' => 'EventosController@update'));
+    Route::patch    ('eventos/{param}'           , array('uses' => 'EventosController@updateStatus'));
     Route::delete   ('eventos/{param}'           , array('uses' => 'EventosController@destroy'));
     //EVENTOS <--
 
@@ -40,6 +41,7 @@ Route::group(['before' => 'auth|permit'],function(){
     //Route::get      ('cursos/{param}'           , array('uses' => 'CursosController@show'));
     Route::get      ('cursos/{param}/editar'    , array('uses' => 'CursosController@edit'));
     Route::post     ('cursos/{param}'           , array('uses' => 'CursosController@update'));
+    Route::patch    ('cursos/{param}'           , array('uses' => 'CursosController@updateStatus'));
     Route::delete   ('cursos/{param}'           , array('uses' => 'CursosController@destroy'));
     //CURSOS <--
 

@@ -34,15 +34,15 @@ if ($resp){
             //TODO Criar BoxModal para confirmações (Tem certeza que deseja deletar isso?)
             if ($eventos[0]) {
                 foreach ($eventos as $eventosRow) { //DADOS
+                    $statusTipo = (($eventosRow->status_evt)  ?['Destivar ','success',' fa-thumbs-up'] :['Ativar ','danger',' fa-thumbs-down']);
                     $eventosPrint .= '
                     <tr'.(($resp->id==$eventosRow->id_evt)?' class="Marcar"':'').'>
                         <td>'.$eventosRow->nome_evt.'</td>
                         <td>'.$eventosRow->descricao_evt.'</td>
                         <td>'.date("d/m/Y",strtotime($eventosRow->data_ini_evt)).'</td>
                         <td>'.date("d/m/Y",strtotime($eventosRow->data_fim_evt)).'</td>
-                        <td>'.(($eventosRow->status_evt)
-                            ?'<div type="button" class="btn btn-success btn-circle"><i class="fa fa-thumbs-up"></i></div>'
-                            :'<div type="button" class="btn btn-danger btn-circle"><i class="fa fa-thumbs-down"></i></div>').'</td>
+                        <td>
+                            <a title="'.$statusTipo[0].$eventosRow->titulo_evt.'" class="btn btn-'.$statusTipo[1].' btn-circle ChangeStatus" href="'.(($route)?$route.'/'.$eventosRow->id_evt:'').'"><i class="fa'.$statusTipo[2].'"></i></a>'.'</td>
                         <td>
                         <div>
                             <a type="button" class="btn btn-warning btn-circle alterar" href="'.(($route)?$route.'/'.$eventosRow->id_evt.'/editar':'').'" ><i class="fa fa-edit"></i></a>
@@ -105,7 +105,7 @@ if ($resp){
 
 <?php
 echo '
-<script>
+<script type="text/javascript">
 $(function() {
     $(".deletar").click(function() {
         var url = $(this).attr("href");
@@ -119,6 +119,24 @@ $(function() {
                 if (reponse.resp) {
                     location.reload();
                 }
+            }
+        });
+        return false;
+    });
+
+    $(".ChangeStatus").click(function() {
+        var url = $(this).attr("href");
+        $.ajax({
+            url: url,
+            type: "PATCH",
+            success: function(result) {
+                //console.log(result);
+                reponse = $.parseJSON(result);
+
+                if (reponse.resp) {
+                    location.reload();
+                }
+
             }
         });
         return false;

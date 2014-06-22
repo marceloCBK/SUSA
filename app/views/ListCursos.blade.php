@@ -34,14 +34,14 @@
             //TODO Mostrar autor(es) do trabalho submetido
             if ($cursos[0]) {
                 foreach ($cursos as $cursosRow) { //DADOS
+                    $statusTipo = (($cursosRow->status_cur)  ?['Destivar ','success',' fa-thumbs-up'] :['Ativar ','danger',' fa-thumbs-down']);
                     $cursosPrint .= '
                     <tr'.(($resp->id==$cursosRow->id_cur)?' class="Marcar"':'').'>
                         <td>'.$cursosRow->nome_cur.'</td>
                         <td>'.$cursosRow->descricao_cur.'</td>
                         <td>'.date("d/m/Y",strtotime($cursosRow->first_date_cur)).'</td>
-                        <td>'.(($cursosRow->status_cur)
-                            ?'<div type="button" class="btn btn-success btn-circle"><i class="fa fa-thumbs-up"></i></div>'
-                            :'<div type="button" class="btn btn-danger btn-circle"><i class="fa fa-thumbs-down"></i></div>').'</td>
+                        <td>
+                            <a title="'.$statusTipo[0].$cursosRow->titulo_cur.'" class="btn btn-'.$statusTipo[1].' btn-circle ChangeStatus" href="'.(($route)?$route.'/'.$cursosRow->id_cur:'').'"><i class="fa'.$statusTipo[2].'"></i></a>'.'</td>
                         <td>
                         <div>
                             './*'<a type="button" title="Ver '.$cursosRow->nome_cur.'" class="btn btn-info btn-circle ver" href="'.(($route)?$route.'/'.$cursosRow->id_cur:'').'" ><i class="fa fa-file"></i></a>'.*/'
@@ -104,7 +104,7 @@
 
 <?php
 echo '
-<script>
+<script type="text/javascript">
 $(function() {
     $(".deletar").click(function() {
         var url = $(this).attr("href");
@@ -118,6 +118,24 @@ $(function() {
                 if (reponse.resp || reponse.respAutores) {
                     location.reload();
                 }
+            }
+        });
+        return false;
+    });
+
+    $(".ChangeStatus").click(function() {
+        var url = $(this).attr("href");
+        $.ajax({
+            url: url,
+            type: "PATCH",
+            success: function(result) {
+                //console.log(result);
+                reponse = $.parseJSON(result);
+
+                if (reponse.resp) {
+                    location.reload();
+                }
+
             }
         });
         return false;
