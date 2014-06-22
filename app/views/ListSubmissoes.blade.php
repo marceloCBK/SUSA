@@ -38,7 +38,7 @@
             //TODO Mostrar autor(es) do trabalho submetido
             if ($conteudos[0]) {
                 foreach ($conteudos as $conteudosRow) { //DADOS
-                    $statusTipo = (($conteudosRow->status_con)  ?['Destivar  ','success','up'] :['Ativar ','danger','down']);
+                    $statusTipo = (($conteudosRow->status_con)  ?['Destivar ','success','up'] :['Ativar ','danger','down']);
                     $conteudosPrint .= '
                     <tr'.(($resp->id==$conteudosRow->id_con)?' class="Marcar"':'').'>
                         <td>'.$conteudosRow->titulo_con.'</td>

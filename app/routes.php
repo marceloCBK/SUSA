@@ -60,6 +60,7 @@ Route::group(['before' => 'auth|permit'],function(){
     Route::post     ('usuarios'                     , array('uses' => 'UsuariosController@store'));
     //Route::get      ('usuarios/{param}'             , array('uses' => 'UsuariosController@show'));
     Route::get      ('usuarios/{param}/editar'      , array('uses' => 'UsuariosController@edit'));
+    Route::patch    ('usuarios/{param}'             , array('uses' => 'UsuariosController@updateStatus'));
     Route::post     ('usuarios/{param}'             , array('uses' => 'UsuariosController@update'));
     Route::delete   ('usuarios/{param}'             , array('uses' => 'UsuariosController@destroy'));
     //USUARIOS <--

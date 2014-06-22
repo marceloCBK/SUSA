@@ -58,8 +58,8 @@ class CursosController extends \BaseController {
 
             //Mensagem->
             $acao = 'inserido';
-            if ($respCursos)    {$menssagem[] = '<b>'.$cursos->nome_cur.'</b> '.$acao.' com sucesso!';}
-            if (!$response)     {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
+            if ($respCursos)        {$menssagem[] = '<b>'.$cursos->nome_cur.'</b> '.$acao.' com sucesso!';}
+            if (!($menssagem[0]))   {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
             //Mensagem<-
 
         } else $menssagem[] = 'Registro <b>não foi salvo!</b> Informe <b>todos os dados</b> na próxima vez!';
@@ -146,8 +146,8 @@ class CursosController extends \BaseController {
 
                 //Mensagem->
                 $acao = 'inserido';
-                if ($respCursos)    {$menssagem[] = '<b>'.$cursos->nome_cur.'</b> '.$acao.' com sucesso!';}
-                if (!$response)     {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
+                if ($respCursos)        {$menssagem[] = '<b>'.$cursos->nome_cur.'</b> '.$acao.' com sucesso!';}
+                if (!($menssagem[0]))   {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
                 //Mensagem<-
 
             } else $menssagem[] = 'Registro <b>não foi salvo!</b> Informe <b>todos os dados</b> na próxima vez!';

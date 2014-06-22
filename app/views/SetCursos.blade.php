@@ -58,7 +58,7 @@ $title = (($id)?'Editar Evento "'.$cursos->nome_cur.'"':'Novo Evento');
 @stop
 
 @section('scripts')
-<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="/js/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="/js/datepicker/js/bootstrap-datepicker.js"></script>
 <link rel="stylesheet" type="text/css" href="/js/datepicker/css/datepicker.css" />
 <script type="text/javascript">
@@ -72,11 +72,11 @@ $title = (($id)?'Editar Evento "'.$cursos->nome_cur.'"':'Novo Evento');
             messages: {
                 nome_cur: {
                     required: "Este campo é necessário!",
-                    minlength: jQuery.format("Por favor, insira pelo menos {0} caracteres!")
+                    minlength: $.validator.format("Por favor, insira pelo menos {0} caracteres!")
                 },
                 descricao_cur: {
                     required: "Este campo é necessário!",
-                    minlength: jQuery.format("Por favor, insira pelo menos {0} caracteres!")
+                    minlength: $.validator.format("Por favor, insira pelo menos {0} caracteres!")
                 }
             },
             rules: {

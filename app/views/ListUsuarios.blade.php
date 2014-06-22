@@ -10,8 +10,26 @@
     <div class="col-lg-12">
         <h1 class="page-header"><% $title %></h1>
     </div>
-    <!-- /.col-lg-12 -->
 </div>
+
+<div class="row">
+    <?php
+    //Mostra mensagem se houver alguma -->
+    $resp = json_decode(Session::get('resp'));
+    //print_r($resp);
+    if ($resp){
+        $mensagem = implode('<br />', $resp->menssagem);
+        echo '
+        <div class="alert'.(($resp->response)?' alert-success':' alert-danger').' alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            '.$mensagem.'
+        </div>
+        ';
+    }
+    //Mostra mensagem se houver alguma <--
+    ?>
+</div>
+
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-body">
@@ -20,21 +38,21 @@
             //TODO Criar BoxModal para confirmações (Tem certeza que deseja deletar isso?)
             if ($usuarios[0]) {
                 foreach ($usuarios as $usuariosRow) { //DADOS
+                    $statusTipo = (($usuariosRow->status_usr)  ?['Destivar ','success','up'] :['Ativar ','danger','down']);
                     $usuariosPrint .= '
-                    <tr>
+                    <tr'.(($resp->id==$usuariosRow->id_usr)?' class="Marcar"':'').'>
                         <td><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span></td>
                         <td>'.$usuariosRow->nome_usr.'</td>
                         <td>'.$usuariosRow->email_usr.'</td>
                         <td>'.$usuariosRow->ra_usr.'</td>
                         <td>'.$usuariosRow->cgu_usr.'</td>
                         <td>'.date("d/m/Y",strtotime($usuariosRow->first_date_usr)).'</td>
-                        <td>'.(($usuariosRow->status_usr)
-                            ?'<div type="button" class="btn btn-success btn-circle"><i class="fa fa-thumbs-up"></i></div>'
-                            :'<div type="button" class="btn btn-danger btn-circle"><i class="fa fa-thumbs-down"></i></div>').'</td>
+                        <td><a title="'.$statusTipo[0].$usuariosRow->nome_usr.'" class="btn btn-'.$statusTipo[1].' btn-circle StatusChange" href="'.(($route)?$route.'/'.$usuariosRow->id_usr:'').'"><i class="fa fa-thumbs-'.$statusTipo[2].'"></i></a>'.'</td>
                         <td>
                         <div>
-                            <a type="button" class="btn btn-warning btn-circle alterar" href="'.(($route)?$route.'/'.$usuariosRow->id_usr.'/editar':'').'" ><i class="fa fa-edit"></i></a>
-                            <a type="button" class="btn btn-danger btn-circle deletar" href="'.(($route)?$route.'/'.$usuariosRow->id_usr:'').'"><i class="fa fa-times"></i></a>
+                            <a type="button" title="Ver '.$usuariosRow->nome_usr.'" class="btn btn-info btn-circle ver" href="'.(($route)?$route.'/'.$usuariosRow->id_usr:'').'" ><i class="fa fa-file"></i></a>
+                            <a type="button" title="Editar '.$usuariosRow->nome_usr.'" class="btn btn-warning btn-circle alterar" href="'.(($route)?$route.'/'.$usuariosRow->id_usr.'/editar':'').'" ><i class="fa fa-edit"></i></a>
+                            <a type="button" title="Deletar '.$usuariosRow->nome_usr.'" class="btn btn-danger btn-circle deletar" href="'.(($route)?$route.'/'.$usuariosRow->id_usr:'').'"><i class="fa fa-times"></i></a>
                         </div>
                         </td>
                     </tr>
@@ -109,6 +127,24 @@ $(function() {
                 if (resp.response) {
                     location.reload();
                 }
+            }
+        });
+        return false;
+    });
+
+    $(".StatusChange").click(function() {
+        var url = $(this).attr("href");
+        $.ajax({
+            url: url,
+            type: "PATCH",
+            success: function(result) {
+                //console.log(result);
+                reponse = $.parseJSON(result);
+
+                if (reponse.resp || reponse.respAutores) {
+                    location.reload();
+                }
+
             }
         });
         return false;

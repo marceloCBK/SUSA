@@ -60,8 +60,8 @@ class EventosController extends \BaseController {
 
             //Mensagem->
             $acao = 'inserido';
-            if ($respEventos)   {$menssagem[] = '<b>'.$eventos->titulo_con.'</b> '.$acao.' com sucesso!';}
-            if (!$response)     {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
+            if ($respEventos)       {$menssagem[] = '<b>'.$eventos->titulo_con.'</b> '.$acao.' com sucesso!';}
+            if (!($menssagem[0]))   {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
             //Mensagem<-
 
         } else $menssagem[] = 'Registro <b>não foi salvo!</b> Informe <b>todos os dados</b> na próxima vez!';
@@ -150,8 +150,8 @@ class EventosController extends \BaseController {
 
                 //Mensagem->
                 $acao = 'inserido';
-                if ($respEventos)   {$menssagem[] = '<b>'.$eventos->titulo_con.'</b> '.$acao.' com sucesso!';}
-                if (!$response)     {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
+                if ($respEventos)       {$menssagem[] = '<b>'.$eventos->titulo_con.'</b> '.$acao.' com sucesso!';}
+                if (!($menssagem[0]))   {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
                 //Mensagem<-
 
             } else $menssagem[] = 'Registro <b>não foi salvo!</b> Informe <b>todos os dados</b> na próxima vez!';

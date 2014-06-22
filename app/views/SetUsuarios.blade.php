@@ -16,7 +16,6 @@ $title = (($id)?'Editar Usuário "'.$usuarios->nome_usr.'"':'Novo Usuário');
     <div class="col-lg-12">
         <h1 class="page-header"><% $title %></h1>
     </div>
-    <!-- /.col-lg-12 -->
 </div>
 
 <div class="row">
@@ -38,10 +37,10 @@ $title = (($id)?'Editar Usuário "'.$usuarios->nome_usr.'"':'Novo Usuário');
 </div>
 
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         <form role="form" class="panel panel-default"<?php echo ' method="post" action="'.$route.(($id)?'/'.$id:'').'"';?>>
             <div class="panel-body">
-                <div class="form-group<?php //has-success has-warning has-error?>">
+                <div class="form-group">
                     <label class="control-label" for="inputSuccess">Nome</label>
                     <input type="text" class="form-control"<?php $fieldName = 'nome_usr'; echo ' id="'.$fieldName.'" name="'.$fieldName.'"'.(($id)?' value="'.$usuarios->nome_usr.'"':''); ?>>
                 </div>
@@ -61,11 +60,11 @@ $title = (($id)?'Editar Usuário "'.$usuarios->nome_usr.'"':'Novo Usuário');
                     <label class="control-label" for="inputError">Senha</label>
                     <input type="password" class="form-control"<?php $fieldName = 'senha_usr'; echo ' id="'.$fieldName.'" name="'.$fieldName.'"';?>>
                 </div>
-<!--                <div class="form-group">
-                    <label class="control-label" for="inputError">Senha Novamente</label>
-                    <input type="password" class="form-control" id="inputError">
+                <div class="form-group">
+                    <label class="control-label" for="inputError">Confirme a Senha</label>
+                    <input type="password" class="form-control"<?php $fieldName = 'senha_usr_confirmation'; echo ' id="'.$fieldName.'" name="'.$fieldName.'"';?>>
                 </div>
--->                <button type="submit" class="btn btn-outline btn-default">Salvar</button>
+                <button type="submit" class="btn btn-outline btn-default">Salvar</button>
             </div>
         </form>
     </div>
@@ -73,31 +72,39 @@ $title = (($id)?'Editar Usuário "'.$usuarios->nome_usr.'"':'Novo Usuário');
 @stop
 
 @section('scripts')
-<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="/js/jquery-validation/dist/jquery.validate.min.js"></script>
 <script type="text/javascript">
     $(function() {
         $('form').validate({
             messages: {
                 nome_usr: {
                     required: "Este campo é necessário!",
-                    minlength: jQuery.format("Por favor, insira pelo menos {0} caracteres!")
+                    minlength: $.validator.format("Por favor, insira pelo menos {0} caracteres!")
                 },
                 email_usr: {
                     required: "Este campo é necessário!",
                     email: "Digite um e-mail válido!",
-                    minlength: jQuery.format("Por favor, insira pelo menos {0} caracteres!")
+                    minlength: $.validator.format("Por favor, insira pelo menos {0} caracteres!")
                 },
                 ra_usr: {
                     required: "Este campo é necessário!",
-                    minlength: jQuery.format("Por favor, insira pelo menos {0} caracteres!")
+                    minlength: $.validator.format("Por favor, insira pelo menos {0} digitos!"),
+                    maxlength: $.validator.format("Por favor, insira no máximo {0} caracteres!"),
+                    digits: $.validator.format("Por favor, insira apenas numeros!")
                 },
                 cgu_usr: {
                     required: "Este campo é necessário!",
-                    minlength: jQuery.format("Por favor, insira pelo menos {0} caracteres!")
+                    minlength: $.validator.format("Por favor, insira pelo menos {0} digitos!"),
+                    maxlength: $.validator.format("Por favor, insira no máximo {0} caracteres!"),
+                    digits: $.validator.format("Por favor, insira apenas numeros!")
                 },
                 senha_usr: {
                     required: "Este campo é necessário!",
-                    minlength: jQuery.format("Por favor, insira pelo menos {0} caracteres!")
+                    minlength: $.validator.format("Por favor, insira pelo menos {0} caracteres!")
+                },
+                senha_usr_confirmation: {
+                    required: "Este campo é necessário!",
+                    minlength: $.validator.format("Por favor, insira pelo menos {0} caracteres!")
                 }
             },
             rules: {
@@ -113,26 +120,30 @@ $title = (($id)?'Editar Usuário "'.$usuarios->nome_usr.'"':'Novo Usuário');
                     email: true
                 }
                 ,ra_usr: {
-                    minlength: 3,
-                    //maxlength: 15,
-                    required: true
+                    minlength: 10,
+                    maxlength: 10,
+                    required: true,
+                    digits: true
                 }
                 ,cgu_usr: {
-                    minlength: 3,
-                    //maxlength: 15,
-                    required: true
+                    minlength: 8,
+                    maxlength: 8,
+                    required: true,
+                    digits: true
                 }
                 <?php
                 if (empty($id)) {
-                    echo('
-                ,senha_usr: {
-                    minlength: 3,
-                    maxlength: 15,
-                    required: true
-                }
-                    ');
+                    $required = 'required: true,';
                 }
                 ?>
+                ,senha_usr: {
+                    <% $required %>
+                    minlength: 8,
+                }
+                ,senha_usr_confirmation: {
+                    <% $required %>
+                    minlength: 8,
+                }
 
             },
             highlight: function(element) {

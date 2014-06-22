@@ -103,10 +103,10 @@ class SubmissoesController extends \BaseController {
 
             //Mensagem->
             $acao = 'inserido';
-            if ($respConteudos) {$menssagem[] = '<b>'.$conteudos->titulo_con.'</b> '.$acao.' com sucesso!';}
-            //if ($respAutores)   {$menssagem[] = '<b>Autor(es)</b> '.$acao.' com sucesso!';}
-            if ($respArquivos)  {$menssagem[] = 'Arquivo <b>'.$arquivos->nome_arq.'</b> foi adicionado com sucesso!';}
-            if (!$response)      {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
+            if ($respConteudos)     {$menssagem[] = '<b>'.$conteudos->titulo_con.'</b> '.$acao.' com sucesso!';}
+            //if ($respAutores)     {$menssagem[] = '<b>Autor(es)</b> '.$acao.' com sucesso!';}
+            if ($respArquivos)      {$menssagem[] = 'Arquivo <b>'.$arquivos->nome_arq.'</b> foi adicionado com sucesso!';}
+            if (!($menssagem[0]))   {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
             //Mensagem<-
 
         } else $menssagem[] = 'Registro <b>não foi salvo!</b> Informe <b>todos os dados</b> na próxima vez!';
@@ -243,11 +243,11 @@ class SubmissoesController extends \BaseController {
 
                 //Mensagem->
                 $acao = 'atualizado';
-                if ($respPost)      {$menssagem[] = '<b>'.$conteudos->titulo_con.'</b> '.$acao.' com sucesso!';}
-                if ($respArquivos)  {$menssagem[] = 'Arquivo <b>'.$arquivos->nome_arq.'</b> foi adicionado com sucesso!';}
-                if (!$response)      {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
-
+                if ($respPost)          {$menssagem[] = '<b>'.$conteudos->titulo_con.'</b> '.$acao.' com sucesso!';}
+                if ($respArquivos)      {$menssagem[] = 'Arquivo <b>'.$arquivos->nome_arq.'</b> foi adicionado com sucesso!';}
+                if (!($menssagem[0]))   {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
                 //Mensagem<-
+
             } else $menssagem[] = 'Registro <b>não foi salvo!</b> Informe <b>todos os dados</b> na próxima vez!';
 
             $resp = json_encode(array(
@@ -300,6 +300,10 @@ class SubmissoesController extends \BaseController {
 
             $autores = ConteudosUsers::where('id_con_cus', $id);
             $respAutores = $autores->delete();
+
+            $acao = 'deletado';
+            if ($resp)          {$menssagem[] = '<b>'.ucwords($acao).'</b> com sucesso!';}
+            if ($respAutores)   {$menssagem[] = '<b>Autor(es)</b> '.$acao.'(s) com sucesso!';}
 
 
             //Recarrega pagina via jQuery na view{}
