@@ -27,6 +27,7 @@ function novoNivel($menuRow)
 <div class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav" id="side-menu">
+            <?php /*
             <li class="sidebar-search">
                 <div class="input-group custom-search-form">
                     <input type="text" class="form-control" placeholder="Search..."/>
@@ -38,6 +39,7 @@ function novoNivel($menuRow)
                 </div>
                 <!-- /input-group -->
             </li>
+            */ ?>
             <li>
                 <a href="/inicio"><i class="fa fa-dashboard fa-fw"></i> Início</a>
             </li>

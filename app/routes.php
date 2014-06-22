@@ -51,6 +51,7 @@ Route::group(['before' => 'auth|permit'],function(){
     Route::get      ('submissoes/{param}/editar'    , array('uses' => 'SubmissoesController@edit'));
     Route::post     ('submissoes/{param}'           , array('uses' => 'SubmissoesController@update'));
     Route::patch    ('submissoes/{param}'           , array('uses' => 'SubmissoesController@updateStatus'));
+    Route::put      ('submissoes/{param}'           , array('uses' => 'SubmissoesController@updateStatusSite'));
     Route::delete   ('submissoes/{param}'           , array('uses' => 'SubmissoesController@destroy'));
     //SUBMISSOES <--
 
@@ -64,6 +65,11 @@ Route::group(['before' => 'auth|permit'],function(){
     Route::post     ('usuarios/{param}'             , array('uses' => 'UsuariosController@update'));
     Route::delete   ('usuarios/{param}'             , array('uses' => 'UsuariosController@destroy'));
     //USUARIOS <--
+
+    //SITE -->
+    Route::get      ('sic'                          , array('uses' => 'SiteController@index'));
+
+    //SITE <--
 });
 //Route::get ('usuarios'                   , array('uses' => 'ConteudoController@ListUsuarios'));
 //Route::resource ('usuarios/inserir'      , 'ConteudoController@NewUsuarios');

@@ -47,7 +47,7 @@
                         <td>'.$usuariosRow->ra_usr.'</td>
                         <td>'.$usuariosRow->cgu_usr.'</td>
                         <td>'.date("d/m/Y",strtotime($usuariosRow->first_date_usr)).'</td>
-                        <td><a title="'.$statusTipo[0].$usuariosRow->nome_usr.'" class="btn btn-'.$statusTipo[1].' btn-circle StatusChange" href="'.(($route)?$route.'/'.$usuariosRow->id_usr:'').'"><i class="fa fa-thumbs-'.$statusTipo[2].'"></i></a>'.'</td>
+                        <td><a title="'.$statusTipo[0].$usuariosRow->nome_usr.'" class="btn btn-'.$statusTipo[1].' btn-circle ChangeStatus" href="'.(($route)?$route.'/'.$usuariosRow->id_usr:'').'"><i class="fa fa-thumbs-'.$statusTipo[2].'"></i></a>'.'</td>
                         <td>
                         <div>
                             <a type="button" title="Ver '.$usuariosRow->nome_usr.'" class="btn btn-info btn-circle ver" href="'.(($route)?$route.'/'.$usuariosRow->id_usr:'').'" ><i class="fa fa-file"></i></a>
@@ -132,7 +132,7 @@ $(function() {
         return false;
     });
 
-    $(".StatusChange").click(function() {
+    $(".ChangeStatus").click(function() {
         var url = $(this).attr("href");
         $.ajax({
             url: url,

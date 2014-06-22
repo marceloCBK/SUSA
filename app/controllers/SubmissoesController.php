@@ -187,6 +187,7 @@ class SubmissoesController extends \BaseController {
 	public function update($id)
 	{
         if($id>0) {
+            //return var_dump($_POST); //TODO fazer com que status possa ter 3 tipos de resultado
             if (!empty($_POST['titulo_con']) && !empty($_POST['descricao_con'])) {
                 $conteudos = Conteudos::find($id);
                 $conteudos->titulo_con       = $_POST['titulo_con'];
@@ -275,6 +276,27 @@ class SubmissoesController extends \BaseController {
             }else {
                 $conteudos->status_con = 1;
             }
+            $resp = $conteudos->save();
+
+            //Recarrega pagina via jQuery na view
+            return json_encode(array(
+                'id'=>$id,
+                'resp'=>$resp,
+                'menssagem'=>$menssagem,
+            ));
+        }
+    }
+
+    public function updateStatusSite($id)
+    {
+        if($id>0) {
+            $conteudos = Conteudos::find($id);
+            switch ((string) $conteudos->status_site_con){
+                case  '1': $conteudos->status_site_con = NULL; break;
+                case  '0': $conteudos->status_site_con = 1; break;
+                default: $conteudos->status_site_con = 0; break;
+            }
+
             $resp = $conteudos->save();
 
             //Recarrega pagina via jQuery na view

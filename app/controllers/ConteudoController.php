@@ -90,12 +90,7 @@ class ConteudoController extends \BaseController {
             )
             ;
     }
-
-    /**
-     * Display a listing of the resource.
-     *x
-     * @return Response
-     */
+/*
     public function ListUsuarios()
     {
         //$route = Route::getCurrentRoute()->getPath();
@@ -124,5 +119,6 @@ class ConteudoController extends \BaseController {
             )
             ;
     }
+*/
 
 }

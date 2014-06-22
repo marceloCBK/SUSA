@@ -38,7 +38,13 @@
             //TODO Mostrar autor(es) do trabalho submetido
             if ($conteudos[0]) {
                 foreach ($conteudos as $conteudosRow) { //DADOS
-                    $statusTipo = (($conteudosRow->status_con)  ?['Destivar ','success','up'] :['Ativar ','danger','down']);
+                    $statusTipo = (($conteudosRow->status_con)  ?['Destivar ','success',' fa-thumbs-up'] :['Ativar ','danger',' fa-thumbs-down']);
+                    $statusTipoSite = (($conteudosRow->status_site_con)  ?['Destivar ','success',' fa-graduation-cap'] :['Ativar ','danger',' fa-graduation-cap']);
+                    switch ((string) $conteudosRow->status_site_con){
+                        case '1': $statusTipoSite = ['Avaliar ','success',' fa-graduation-cap']; break;
+                        case '0': $statusTipoSite = ['Retirar do Site ','danger',' fa-graduation-cap']; break;
+                        default : $statusTipoSite = ['Mostrar no Site ','default',' fa-graduation-cap']; break;
+                    }
                     $conteudosPrint .= '
                     <tr'.(($resp->id==$conteudosRow->id_con)?' class="Marcar"':'').'>
                         <td>'.$conteudosRow->titulo_con.'</td>
@@ -46,7 +52,12 @@
                         <td>'.$conteudosRow->curso->nome_cur.'</td>
                         <td>'.$conteudosRow->evento->nome_evt.'</td>
                         <td>'.date("d/m/Y",strtotime($conteudosRow->first_date_con)).'</td>
-                        <td><a title="'.$statusTipo[0].$conteudosRow->titulo_con.'" class="btn btn-'.$statusTipo[1].' btn-circle StatusChange" href="'.(($route)?$route.'/'.$conteudosRow->id_con:'').'"><i class="fa fa-thumbs-'.$statusTipo[2].'"></i></a>'.'</td>
+                        <td>
+                        <div>
+                            <a title="'.$statusTipo[0].$conteudosRow->titulo_con.'" class="btn btn-'.$statusTipo[1].' btn-circle ChangeStatus" href="'.(($route)?$route.'/'.$conteudosRow->id_con:'').'"><i class="fa'.$statusTipo[2].'"></i></a>'.'
+                            <a title="'.$statusTipoSite[0].$conteudosRow->titulo_con.'" class="btn btn-'.$statusTipoSite[1].' btn-circle ChangeStatusSite" href="'.(($route)?$route.'/'.$conteudosRow->id_con:'').'"><i class="fa'.$statusTipoSite[2].'"></i></a>'.'
+                        </div>
+                        </td>
                         <td>
                         <div>
                             <a type="button" title="Ver '.$conteudosRow->titulo_con.'" class="btn btn-info btn-circle ver" href="'.(($route)?$route.'/'.$conteudosRow->id_con:'').'" ><i class="fa fa-file"></i></a>
@@ -65,11 +76,11 @@
                         <thead>
                         <tr>
                             <th class="col-lg-2">Titulo</th>
-                            <th class="col-lg-4">Resumo</th>
+                            <th class="col-lg-3">Resumo</th>
                             <th class="col-lg-2">Curso</th>
                             <th class="col-lg-2">Evento</th>
                             <th>Desde</th>
-                            <th>Status</th>
+                            <th class="col-lg-1">Status</th>
                             <th class="col-lg-1">Ações</th>
                         </tr>
                         </thead>
@@ -111,7 +122,7 @@
 
 <?php
 echo '
-<script>
+<script type="text/javascript">
 $(function() {
     $(".deletar").click(function() {
         var url = $(this).attr("href");
@@ -130,7 +141,7 @@ $(function() {
         return false;
     });
 
-    $(".StatusChange").click(function() {
+    $(".ChangeStatus").click(function() {
         var url = $(this).attr("href");
         $.ajax({
             url: url,
@@ -139,7 +150,25 @@ $(function() {
                 //console.log(result);
                 reponse = $.parseJSON(result);
 
-                if (reponse.resp || reponse.respAutores) {
+                if (reponse.resp) {
+                    location.reload();
+                }
+
+            }
+        });
+        return false;
+    });
+
+    $(".ChangeStatusSite").click(function() {
+        var url = $(this).attr("href");
+        $.ajax({
+            url: url,
+            type: "PUT",
+            success: function(result) {
+                //console.log(result);
+                reponse = $.parseJSON(result);
+
+                if (reponse.resp) {
                     location.reload();
                 }
 
