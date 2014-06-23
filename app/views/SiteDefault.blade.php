@@ -1,4 +1,4 @@
-@extends ('layouts.template')
+@extends ('layouts.templateSite')
 
 <?php $title = 'Sistema Ulbra de Submissões Avaliativas'; ?>
 @section('title')

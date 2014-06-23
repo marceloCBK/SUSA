@@ -45,10 +45,11 @@
                         case '0': $statusTipoSite = ['Retirar do Site ','danger',' fa-graduation-cap']; break;
                         default : $statusTipoSite = ['Mostrar no Site ','default',' fa-graduation-cap']; break;
                     }
+                    //<th class="col-lg-3">Resumo</th>
+                    //<td>'.$conteudosRow->descricao_con.'</td>
                     $conteudosPrint .= '
                     <tr'.(($resp->id==$conteudosRow->id_con)?' class="Marcar"':'').'>
                         <td>'.$conteudosRow->titulo_con.'</td>
-                        <td>'.$conteudosRow->descricao_con.'</td>
                         <td>'.$conteudosRow->curso->nome_cur.'</td>
                         <td>'.$conteudosRow->evento->nome_evt.'</td>
                         <td>'.date("d/m/Y",strtotime($conteudosRow->first_date_con)).'</td>
@@ -75,8 +76,7 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th class="col-lg-2">Titulo</th>
-                            <th class="col-lg-3">Resumo</th>
+                            <th>Titulo</th>
                             <th class="col-lg-2">Curso</th>
                             <th class="col-lg-2">Evento</th>
                             <th>Desde</th>

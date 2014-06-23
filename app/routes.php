@@ -22,6 +22,11 @@ Route::get      ('entrar'                       , array('uses' => 'ConteudoContr
 Route::get      ('/'                            , array('uses' => 'ConteudoController@Index'))->before('auth');
 Route::get      ('inicio'                       , array('uses' => 'ConteudoController@Index'))->before('auth');
 
+//SITE -->
+Route::get      ('sic'                          , array('uses' => 'SiteController@index'));
+Route::get      ('sic/{param}'                  , array('uses' => 'SiteController@mostrarArquivos'));
+//SITE <--
+
 Route::group(['before' => 'auth|permit'],function(){
     //EVENTOS -->
     Route::get      ('eventos'                   , array('uses' => 'EventosController@index'));
@@ -50,6 +55,7 @@ Route::group(['before' => 'auth|permit'],function(){
     Route::get      ('submissoes/inserir'           , array('uses' => 'SubmissoesController@create'));
     Route::post     ('submissoes'                   , array('uses' => 'SubmissoesController@store'));
     Route::get      ('submissoes/{param}'           , array('uses' => 'SubmissoesController@show'));
+    Route::post     ('submissoes/{param}/mensagem'  , array('uses' => 'SubmissoesController@storeMensagem', 'as' => 'submissoes.mensagem'))->before('csrf');
     Route::get      ('submissoes/{param}/editar'    , array('uses' => 'SubmissoesController@edit'));
     Route::post     ('submissoes/{param}'           , array('uses' => 'SubmissoesController@update'));
     Route::patch    ('submissoes/{param}'           , array('uses' => 'SubmissoesController@updateStatus'));
@@ -67,11 +73,6 @@ Route::group(['before' => 'auth|permit'],function(){
     Route::post     ('usuarios/{param}'             , array('uses' => 'UsuariosController@update'));
     Route::delete   ('usuarios/{param}'             , array('uses' => 'UsuariosController@destroy'));
     //USUARIOS <--
-
-    //SITE -->
-    Route::get      ('sic'                          , array('uses' => 'SiteController@index'));
-
-    //SITE <--
 });
 //Route::get ('usuarios'                   , array('uses' => 'ConteudoController@ListUsuarios'));
 //Route::resource ('usuarios/inserir'      , 'ConteudoController@NewUsuarios');

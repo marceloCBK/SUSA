@@ -134,14 +134,17 @@ class SubmissoesController extends \BaseController {
 	public function show($id)
 	{
         if ($id>0){
-            $conteudos = Conteudos::find($id);
+            $comentarios    = Comentarios::where('id_con_com', $id)->get();
+            $conteudos      = Conteudos::find($id);
+
             if ($conteudos){
                 return View::make('ViewSubmissoes')
                     ->with(Config::get('Globals'))
                     ->with(
                         array(
-                            'menu'=>ConteudoController::menu(),
-                            'conteudos'=>$conteudos
+                            'menu'          =>ConteudoController::menu(),
+                            'conteudos'     =>$conteudos,
+                            'comentarios'   =>$comentarios,
                         )
                     )
                     ;
@@ -212,6 +215,7 @@ class SubmissoesController extends \BaseController {
                     }
                 }
 
+                //TODO Limitar os tipos de arquivos permitidos para enviar
                 //Upload->
                 $idCon = $conteudos->id_con;//seleciona id da submissão referente
                 $titulo = ConteudoController::CharSP($conteudos->titulo_con); //Usa o titulo do trabalho como nome de arquivo
@@ -284,6 +288,43 @@ class SubmissoesController extends \BaseController {
                 'resp'=>$resp,
                 'menssagem'=>$menssagem,
             ));
+        }
+    }
+
+
+    public function storeMensagem($id)
+    {
+        if($id>0) {
+            if (!empty($_POST['comentario_com'])) {
+                $comentarios = new Comentarios();
+                $comentarios->comentario_com = $_POST['comentario_com'];
+                $comentarios->id_con_com = $id;
+                $comentarios->id_usr_com = Auth::user()->id_usr;
+                $comentarios->first_date_com = date("Y-m-d H:i:s");
+                //return var_dump($comentarios);
+                $response = $comentarios->save();
+            } else {
+                $error = 'Você deve digitar uma mensagem antes de em envia-la!';
+            }
+
+            //Mensagem->
+            $acao = 'enviada';
+            if ($response)          {$menssagem[] = 'Sua <b>Mensagem</b> '.$acao.' com sucesso!';}
+            if ($error)             {$menssagem[] = $error;}
+            if (!($menssagem[0]))   {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
+            //Mensagem<-
+
+            //TODO Implementar o "Enviar e-mail" aqui
+
+            //Recarrega pagina via jQuery na view
+            $resp = json_encode(array(
+                'id'        => $comentarios->id_com,
+                'response'  => $response,
+                'menssagem' => $menssagem,
+            ));
+
+            return Redirect::back()
+                ->with(['resp'=>$resp]);
         }
     }
 

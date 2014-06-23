@@ -65,14 +65,14 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Foto</th>
+                            <th class="col-lg-1">Foto</th>
                             <th>Nome</th>
                             <th>E-mail</th>
-                            <th>RA</th>
-                            <th>CGU</th>
-                            <th>Desde</th>
-                            <th>Status</th>
-                            <th>Ações</th>
+                            <th class="col-lg-1">RA</th>
+                            <th class="col-lg-1">CGU</th>
+                            <th class="col-lg-1">Desde</th>
+                            <th class="col-lg-1">Status</th>
+                            <th class="col-lg-1">Ações</th>
                         </tr>
                         </thead>
                         <tbody>

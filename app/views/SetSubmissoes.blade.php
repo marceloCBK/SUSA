@@ -69,7 +69,7 @@ $title = (($id)?'Editar Trabalho "'.$conteudos->titulo_con.'"':'Novo Trabalho');
                     ?>
                 </div>
                 @endif
-                <div class="form-group">
+                <div class="form-group MaisUm">
                     <label class="control-label" for="inputWarning">Autores</label>
                 <?php
                 $fieldName = 'autores_con[]';
